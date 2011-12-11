@@ -3,6 +3,12 @@
 Pipe your curl output to cjson and make it both sexier and easier to
 read.
 
+## Install
+
+`sudo gem install colorful_json`
+
+## Usage
+
 ```
 curl -s https://api.flattr.com/rest/v2/users/smgt/things | cjson
 ```
