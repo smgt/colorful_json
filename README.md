@@ -1,4 +1,4 @@
-= Color your JSON!
+# Color your JSON!
 
 Pipe your curl output to cjson and make it both sexier and easier to
 read.
@@ -13,6 +13,6 @@ Or open a file from disk
 cjson things.json
 ```
 
-== Copyright
+## Copyright
 
 Copyright (c) 2011 Simon Gate. See LICENSE for details.
