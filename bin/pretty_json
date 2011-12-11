@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-
-require "pretty_json"
-puts PrettyJson.new(ARGV[0])

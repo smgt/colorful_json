@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require "colorful_json"
+
+if ARGV.empty?
+  lines = STDIN.readlines.join
+else
+  lines = File.open(ARGV[0]).readlines.join
+end
+
+puts ColorfulJson.parse(lines)
