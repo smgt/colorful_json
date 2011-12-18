@@ -1,11 +1,19 @@
 #!/usr/bin/env ruby
 
-require "colorful_json"
+require "yajl"
+require "pygments.rb"
 
-if ARGV.empty?
-  lines = STDIN.readlines.join
-else
-  lines = File.open(ARGV[0]).readlines.join
+def parse_json(input)
+  parsed_input = Yajl::Parser.parse(input)
+  json = Yajl::Encoder.encode(parsed_input, :pretty => true)
+  puts Pygments.highlight(json, :formatter => 'terminal', :lexer => 'javascript')
+  exit 0
+  rescue Yajl::ParseError
+    puts input
+    exit 1
 end
 
-puts ColorfulJson.parse(lines)
+begin
+  lines = ARGF.readlines.join
+  parse_json lines
+end
