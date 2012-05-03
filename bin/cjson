@@ -1,19 +1,31 @@
 #!/usr/bin/env ruby
 
-require "yajl"
+begin
+  require "yajl/json_gem"
+rescue LoadError
+  require "json"
+end
 require "pygments.rb"
 
 def parse_json(input)
-  parsed_input = Yajl::Parser.parse(input)
-  json = Yajl::Encoder.encode(parsed_input, :pretty => true)
-  puts Pygments.highlight(json, :formatter => 'terminal', :lexer => 'javascript', :options => {:encoding => 'utf-8'})
-  exit 0
+  begin
+  json_parsed = JSON.parse(input)
+  rescue JSON::ParserError
+    puts "Error parsing the JSON"
+    exit 1
   rescue Yajl::ParseError
     puts input
     exit 1
+  end
+  json = JSON.pretty_generate(json_parsed)
+  puts Pygments.highlight(json, :formatter => 'terminal', :lexer => 'javascript', :options => {:encoding => 'utf-8'})
+  exit 0
 end
 
 begin
   lines = ARGF.readlines.join
   parse_json lines
+rescue Errno::ENOENT
+  puts "Error opening the input"
+  exit 1
 end
