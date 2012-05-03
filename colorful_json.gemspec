@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "colorful_json"
-  s.version     = '0.9.2'
+  s.version     = '0.9.3'
   s.authors     = ["Simon Gate"]
   s.email       = ["simon@smgt.me"]
   s.summary     = %q{Colorize and pretty parse JSON and get colored acsii output}
